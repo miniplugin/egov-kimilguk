@@ -58,6 +58,10 @@ https://drive.google.com/file/d/1qs2ct8sJyHxf985dJaepbN2sv_ZZ8DpX/view?usp=shari
 #### 20210210(수) 작업예정.
 - 수업전: 임송하씨 겔러리게시판 글 나오지 않는 부분 확인예정.
 - 전자정부표준프레임워크 커스터마이징 깃 확인.
-- AdminLTE 템플릿을 egov프로젝트에 붙여 넣기
-- AdminLTE 관리자관리기능 추가.
+- 첫째, 마이바티스 사용가능하게 설정(pom.xml내용추가), edu.human.com패키지지정, 클래스빈자동등록추가(egov-com-servlet.xml), VO+매퍼쿼리추가
+- 둘째, 스프링의 sqlSession템플릿을 DAO에서 직접 사용하지 않고, 전자정부 전용 EgovAbstractMapper클래스를 상속(필수)->EgovComAbstractMapper.java(Mybatis용)
+- 셋째, egov 패키지명명규칙-특징:패키지는 기능별로 구분하고, 서비스와DAO가 같은 패키지에 존재함, 그래서 서비스에 DAO클래스를 생성하게 됨.
+- 넷째, JUnit테스트
+- AdminLTE 템플릿을 egov프로젝트에 붙여 넣기(resources폴더에)
+- AdminLTE 관리자관리기능 추가.(로그인체크에 결리게 egov-com-servlet.xml의 인터셉터에 경로추가)
 - C언어 기초: 3장 입출력함수와 연산자 시작예정.
