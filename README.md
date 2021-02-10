@@ -60,6 +60,8 @@
 - 둘째, 스프링의 sqlSession템플릿을 DAO에서 @Inject로 직접 사용하지 않고, 전자정부 전용 EgovAbstractMapper클래스를 상속(필수)->EgovComAbstractMapper.java(Mybatis용)
 - 셋째, egov 패키지명명규칙-특징:패키지는 기능별로 구분하고, 서비스와DAO가 같은 패키지에 존재함, 그래서 서비스클래스생성후 Impl폴더에 DAO클래스를 생성하게 됨.
 - 넷째, JUnit테스트
+- 넷째-1: pom.xml 외부라이브러리 추가
+- -----------------------------
 - AdminLTE 템플릿을 egov프로젝트에 붙여 넣기(resources폴더에)
 - AdminLTE 관리자관리기능 추가.(로그인체크에 결리게 egov-com-servlet.xml의 인터셉터에 경로추가)
 - C언어 기초: 3장 입출력함수와 연산자 시작예정.
