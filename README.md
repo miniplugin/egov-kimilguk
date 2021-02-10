@@ -58,7 +58,7 @@
 - 첫째-1: mybatis용 context명세파일 생성.(context-mapper.xml): 마이바티스에 사용되는 각종경로 명시(mapper-config.xml과 기본매퍼쿼리파일member_mysql.xml 생성).
 - 첫째-2: edu.human.com패키지지정 후 클래스빈자동등록추가(egov-com-servlet.xml), VO+매퍼쿼리추가(스프링에서 클래스를 사용하려면 빈으로 등록해야 함.)
 - 둘째, 스프링의 sqlSession템플릿을 DAO에서 @Inject로 직접 사용하지 않고, 전자정부 전용 EgovAbstractMapper클래스를 상속(필수)->EgovComAbstractMapper.java(Mybatis용)
-- 셋째, egov 패키지명명규칙-특징:패키지는 기능별로 구분하고, 서비스와DAO가 같은 패키지에 존재함, 그래서 서비스에 DAO클래스를 생성하게 됨.
+- 셋째, egov 패키지명명규칙-특징:패키지는 기능별로 구분하고, 서비스와DAO가 같은 패키지에 존재함, 그래서 서비스클래스생성후 Impl폴더에 DAO클래스를 생성하게 됨.
 - 넷째, JUnit테스트
 - AdminLTE 템플릿을 egov프로젝트에 붙여 넣기(resources폴더에)
 - AdminLTE 관리자관리기능 추가.(로그인체크에 결리게 egov-com-servlet.xml의 인터셉터에 경로추가)

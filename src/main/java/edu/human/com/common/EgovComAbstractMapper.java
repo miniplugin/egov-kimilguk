@@ -1,8 +1,6 @@
 package edu.human.com.common;
 
 import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Resource;
 
 import org.apache.ibatis.session.RowBounds;
@@ -80,7 +78,6 @@ public abstract class EgovComAbstractMapper extends EgovAbstractMapper {
 	public int update(String queryId, Object parameterObject) {
 		return getSqlSession().update(queryId, parameterObject);
 	}
-
 	
 	@Override
 	public <E> List<E> selectList(String queryId, Object parameterObject, RowBounds rowBounds) {
