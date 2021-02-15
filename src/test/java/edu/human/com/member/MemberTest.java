@@ -30,6 +30,18 @@ public class MemberTest {
 	private MemberService memberService;
 	
 	@Test
+	public void insertMember() throws Exception {
+		EmployerInfoVO memberVO = new EmployerInfoVO();//고전방식 객체생성
+		//memberVO에 set으로 값을 입력한 이후 DB에 인서트함.
+		memberVO.setEMPLYR_ID("user01");
+		memberService.insertMember(memberVO);
+	}
+	@Test
+	public void viewMember() throws Exception {
+		EmployerInfoVO memberVO = memberService.viewMember("admin");
+		System.out.println("admin회원의 상세정보는 "+memberVO.toString());
+	}
+	@Test
 	public void selectMember() throws Exception {
 		List<EmployerInfoVO> memberList = memberService.selectMember();
 		for(EmployerInfoVO member:memberList) {
