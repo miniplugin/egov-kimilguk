@@ -3,7 +3,11 @@
 <mapper namespace="memberMapper">
 
 <select id="selectMember" resultType="edu.human.com.member.service.EmployerInfoVO">
-select * from lettnemplyrinfo
+select * from lettnemplyrinfo order by sbscrb_de desc
+</select>
+
+<select id="viewMember" resultType="edu.human.com.member.service.EmployerInfoVO">
+select * from lettnemplyrinfo where emplyr_id = #emplyr_id
 </select>
 
 </mapper>
