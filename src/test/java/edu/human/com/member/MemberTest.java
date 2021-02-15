@@ -15,6 +15,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import edu.human.com.member.service.EmployerInfoVO;
 import edu.human.com.member.service.MemberService;
+import egovframework.let.utl.sim.service.EgovFileScrty;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations ={
@@ -36,12 +37,16 @@ public class MemberTest {
 		memberVO.setEMPLYR_ID("user01");
 		memberVO.setORGNZT_ID("ORGNZT_0000000000000");//외래키이기때문에
 		memberVO.setUSER_NM("사용자01");
-		//암호화 작업(아래)
-		memberVO.setPASSWORD("");
-		memberVO.setSEXDSTN("F");
+		//암호화 작업(아래) 스프링시큐리티X, egov전용 시큐리티암호화("입력한문자","입력한ID")
+		String secPassword = EgovFileScrty.encryptPassword("1234",memberVO.getEMPLYR_ID());
+		memberVO.setPASSWORD(secPassword);
+		memberVO.setEMAIL_ADRES("abc@abc.com");
+		memberVO.setPASSWORD_HINT("아이디가 힌트");//널체크에러때문에 추가
+		//암호힌트에대한 답변추가예정
+		memberVO.setSEXDSTN_CODE("F");
 		memberVO.setHOUSE_ADRES("집주소");
-		memberVO.setGROUP_ID("GROUP_00000000000000");//외래키이기때문에
-		memberVO.setEMPLYR_STTUS_CODE("P");
+		memberVO.setGROUP_ID("GROUP_00000000000000");//외래키이기때문에 부모테이블에 있는값을 넣어야 함.
+		memberVO.setEMPLYR_STTUS_CODE("P");//회원상태코드 P-활성,S-비활성
 		memberVO.setESNTL_ID("USRCNFRM_00000000000");//고유ID이기때문에
 		memberService.insertMember(memberVO);
 	}
