@@ -34,6 +34,15 @@ public class MemberTest {
 		EmployerInfoVO memberVO = new EmployerInfoVO();//고전방식 객체생성
 		//memberVO에 set으로 값을 입력한 이후 DB에 인서트함.
 		memberVO.setEMPLYR_ID("user01");
+		memberVO.setORGNZT_ID("ORGNZT_0000000000000");//외래키이기때문에
+		memberVO.setUSER_NM("사용자01");
+		//암호화 작업(아래)
+		memberVO.setPASSWORD("");
+		memberVO.setSEXDSTN("F");
+		memberVO.setHOUSE_ADRES("집주소");
+		memberVO.setGROUP_ID("GROUP_00000000000000");//외래키이기때문에
+		memberVO.setEMPLYR_STTUS_CODE("P");
+		memberVO.setESNTL_ID("USRCNFRM_00000000000");//고유ID이기때문에
 		memberService.insertMember(memberVO);
 	}
 	@Test
