@@ -64,6 +64,23 @@
 - 관리자단 home.jsp > header, footer 로 분리.
 - 코드 인스펙션(소스 분석): egov프로젝트의 진입점(webapp/index.jsp) 확인.
 - egov프로젝트의 jsp(동적페이지)폴더에 html(정적페이지)를 jsp로 변환해서 배치합니다.
+
+```
+-- Mysql 데이터베이스에서 CODE테이블의 코드명 가져오는 함수 만들기 (아래)
+CREATE FUNCTION `FN_CODE_NM` (
+P_CODE_ID VARCHAR(255),
+P_CODE VARCHAR(255)
+)
+RETURNS VARCHAR(255)
+BEGIN
+DECLARE RETURN_VAR VARCHAR(255);
+SELECT CODE_NM INTO RETURN_VAR
+FROM lettccmmndetailcode 
+WHERE 
+CODE_ID = P_CODE_ID AND CODE = P_CODE;
+RETURN RETURN_VAR;
+END
+```
 - 게시판관리 부분도 작업: 아이바티스기반(기존egov것)으로 작업(컨트롤러+jsp뷰단만 작업).
 - 오후에 키보드로 입력받은 1개문자를  아스키코드로 변환하는 C프로그램을 작성할 예정.
 
