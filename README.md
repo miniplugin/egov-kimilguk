@@ -53,6 +53,13 @@
 - 2월3일 UI구현 과제물 제출 + 사후 + 사전평가: 이현진씨(사정생겨서 취소)
 - 2월8일 SQL활용 과제물 및 서술형: 이현진씨(사정이생겨서 취소)
 - -----------------------------------------------------
+#### 20210217(수) 작업예정.
+- egov프로젝트 관리자관리 CRUD 마무리.
+- egov프로젝트 관리자관리 검색 및 페이징 처리 추가.
+- egov게시물관리 CRUD 처리(관리자관리처럼 마이바티스이용않하고) ibatis(기존클래스이용)적용.
+- egov게시물관리는 컨트롤러와 JSP단만 처리합니다.(AdminLTE)
+- 사용자단 메인페이지 UI 변경예정(타일즈템플릿-벨로서티템플릿 jsp UI템플릿을 사용) tiles템플릿을 사용예정.
+- 차투리시간에 C언어 계속진행.
 
 #### 20210216(화) 작업.
 - 이클립스 빌드 속도 때문에 window메뉴->preference->validation검색->build탭의 체크모두해제 시킴->OK.
@@ -64,10 +71,11 @@
 - 관리자단 home.jsp > header, footer 로 분리.
 - 코드 인스펙션(소스 분석): egov프로젝트의 진입점(webapp/index.jsp) 확인.
 - egov프로젝트의 jsp(동적페이지)폴더에 html(정적페이지)를 jsp로 변환해서 배치합니다.
+- 공통코드(기본코드) 테이블 이용에 대한 개념이 있어야 합니다. 오늘은 여기까지
 
 ```
 -- Mysql 데이터베이스에서 CODE테이블의 코드명 가져오는 함수 만들기 (아래)
-CREATE FUNCTION `FN_CODE_NM` (
+CREATE FUNCTION FN_CODE_NM (
 P_CODE_ID VARCHAR(255),
 P_CODE VARCHAR(255)
 )
@@ -78,6 +86,17 @@ SELECT CODE_NM INTO RETURN_VAR
 FROM lettccmmndetailcode 
 WHERE 
 CODE_ID = P_CODE_ID AND CODE = P_CODE;
+RETURN RETURN_VAR;
+END
+
+CREATE FUNCTION FN_GROUP_NM(P_GROUP_ID VARCHAR(255)
+) RETURNS varchar(255) CHARSET utf8
+BEGIN
+DECLARE RETURN_VAR VARCHAR(255);
+SELECT GROUP_NM INTO RETURN_VAR
+FROM lettnauthorgroupinfo
+WHERE 
+GROUP_ID = P_GROUP_ID;
 RETURN RETURN_VAR;
 END
 ```
