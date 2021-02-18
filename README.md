@@ -58,7 +58,7 @@
 - egov게시물관리 CRUD 처리(관리자관리처럼 마이바티스이용 안하고) ibatis(기존클래스이용)적용.
 - egov게시물관리는 컨트롤러와 JSP단만 처리합니다.(AdminLTE)
 - 사용자단 메인페이지 UI 변경예정(타일즈템플릿-벨로서티템플릿 jsp UI템플릿을 사용) tiles템플릿을 사용예정.
-- 쉬어가는 시간에 C언어 은행입출금프로그램 실습예정.
+- 쉬어가는 시간에 포인터이후 진도확인 및 C언어 은행입출금프로그램 실습예정.
 
 #### 20210218(목) 작업
 - 참고: egovframework.let.uat.uia.service.impl패키지명내 EgovLoginServiceImpl.java(로그인처리부분)
