@@ -51,6 +51,7 @@ public class AdminController {
 	@RequestMapping(value="/admin/member/insert_member.do",method=RequestMethod.POST)
 	public String insert_member(EmployerInfoVO memberVO,RedirectAttributes rdat) throws Exception {
 		//입력DB처리 호출
+		
 		memberService.insertMember(memberVO);
 		rdat.addFlashAttribute("msg", "입력");
 		return "redirect:/admin/member/list_member.do";
