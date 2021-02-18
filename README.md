@@ -52,6 +52,7 @@
 - -----------------------------------------------------
 
 #### 20210218(목) 작업
+- 참고: egovframework.let.uat.uia.service.impl패키지명내 EgovLoginServiceImpl.java(로그인처리부분)
 - 비교구문: int a = 3, float b = 3.0
 - if(a==b) TRUE, if(a===b) FALSE, 이것처럼 ==값만비교, ===값과 자료형 까지비교
 - 대학전산과: 1(C언어:은행입출금프로그램-기말고사),2(C++언어),3(java),4(jsp)
