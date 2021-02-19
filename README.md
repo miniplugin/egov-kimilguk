@@ -61,6 +61,12 @@
 -2 egov게시물관리는 컨트롤러와 JSP단만 처리합니다.(AdminLTE)
 - 위 1,2을 정리하면, 관리자관리는 컨트롤러+JSP+서비스+MyBatis를 우리가 만든것 사용OK
 - 게시물관리는 컨트롤러+JSP는 우리가 만들고, 서비스+iBatis는 전자정부것을 사용예정.
+- 전자정부표준프레임워크기반 심플홈템플릿스프링웹프로젝트를 커스터마이징.
+- 정부에서 발주해서 삼성SDS + LG CNS + SK C&C 컨소시엄으로 만들었습니다.(2011년 배포 ~ 지금까지)
+- egov 프로젝트에서 세션이 발생하는 하는 부분:아래 컨트롤러
+- egovframework.let.uat.uia.web패키지 안 EgovLoginController.java
+- admin/board/list_board.jsp <-> EgovNoticeList.jsp
+- AdminController.java       <-> EgovBBSManageController.java
 - -------------------------------------------------------------
 - 사용자단 메인페이지 UI 변경예정(타일즈템플릿-벨로서티템플릿 jsp UI템플릿을 사용) tiles템플릿을 사용예정.
 - 쉬어가는 시간에 포인터이후 진도확인 및 C언어 은행입출금프로그램 실습예정.
