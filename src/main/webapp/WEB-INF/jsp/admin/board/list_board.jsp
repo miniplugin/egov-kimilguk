@@ -76,14 +76,18 @@
                     </tr>
                   </thead>
                   <tbody>
-                  <c:forEach items="">
+                  <c:forEach items="${resultList}" var="result" varStatus="status">
                     <tr>
-                      <td>1</td>
+                      <td>
+                      <!-- 공지사항전체게시물수20 + 1-((현재페이지번호2-1)*페이지당보여줄개수10)+forEach인덱스1 -->
+                      <!-- 20~11 이전1페이지 > 이후2페이지 결과 10부터 -->
+                      <c:out value="${paginationInfo.totalRecordCount+1-((searchVO.pageIndex-1)*searchVO.pageSize+status.count)}"/>
+                      </td>
                       <!-- 아래 a링크값은 리스트가 늘어날 수록 동적으로 bno값이 변하게 됩니다. 개발자가 jsp처리 -->
-                      <td><a href="board_view.html?bno=1">첫번째 게시물 제목[2]</a></td>
-                      <td>admin</td>
-                      <td>2020-12-09</td>
-                      <td><span class="badge bg-danger">3</span></td>
+                      <td><a href="<c:url value='/admin/board/view_board.do' />">${result.nttSj}</a></td>
+                      <td>${result.frstRegisterNm}</td>
+                      <td>${result.frstRegisterPnttm}</td>
+                      <td><span class="badge bg-danger">${result.inqireCo}</span></td>
                       <!-- 권한표시는 부트스트랩 뺏지 클래스 사용 -->
                     </tr>
                   </c:forEach>
