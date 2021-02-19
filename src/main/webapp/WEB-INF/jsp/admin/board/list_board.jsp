@@ -9,12 +9,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">게시판리스트</h1>
+            <h1 class="m-0">${brdMstrVO.bbsNm} 게시판리스트</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">게시판리스트</li>
+              <li class="breadcrumb-item active">${brdMstrVO.bbsNm} 게시판리스트</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -34,7 +34,13 @@
 
                 <div class="card-tools">
                   
-                  <form name="search_form" action="member_list.html" method="get">
+                  <form name="search_form" action="<c:url value='/admin/board/list_board.do' />" method="get">
+                  	<input type="hidden" name="bbsId" value="<c:out value='${boardVO.bbsId}'/>" />
+					<input type="hidden" name="nttId"  value="0" />
+					<input type="hidden" name="bbsTyCode" value="<c:out value='${brdMstrVO.bbsTyCode}'/>" />
+					<input type="hidden" name="bbsAttrbCode" value="<c:out value='${brdMstrVO.bbsAttrbCode}'/>" />
+					<input type="hidden" name="authFlag" value="<c:out value='${brdMstrVO.authFlag}'/>" />
+					<input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
                   <div class="input-group input-group-sm">
                     <!-- 부트스트랩 템플릿만으로는 디자인처리가 부족한 경우가 있기 때문에 종종 인라인 스타일 사용 -->
                     <div>
