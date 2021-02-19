@@ -85,14 +85,22 @@
                       <c:out value="${paginationInfo.totalRecordCount+1-((searchVO.pageIndex-1)*searchVO.pageSize+status.count)}"/>
                       </td>
                       <td>
+                      <form name="view_form" action="<c:url value='/admin/board/view_board.do' />" method="post">
                       <!-- 답글일경우 계단식표시 추가(아래) -->
                       <c:if test="${result.replyLc!=0}">
 		                <c:forEach begin="0" end="${result.replyLc}" step="1">
 		                    &nbsp;<!-- 들여쓰기 역할하는 스페이스바 특수문자 -->
 		                </c:forEach>
-		                &#8618;<!-- 화살표 특수문자 -->
+		                &#8627;<!-- 화살표 특수문자 -->
 		              </c:if>
-                      <a href="<c:url value='/admin/board/view_board.do' />">${result.nttSj}</a>
+                      	<input type="hidden" name="bbsId" value="<c:out value='${result.bbsId}'/>" />
+                        <input type="hidden" name="nttId"  value="<c:out value="${result.nttId}"/>" />
+                        <input type="hidden" name="bbsTyCode" value="<c:out value='${brdMstrVO.bbsTyCode}'/>" />
+                        <input type="hidden" name="bbsAttrbCode" value="<c:out value='${brdMstrVO.bbsAttrbCode}'/>" />
+                        <input type="hidden" name="authFlag" value="<c:out value='${brdMstrVO.authFlag}'/>" />
+                        <input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
+                        <span class="btn_submit" style="cursor:pointer;">${result.nttSj}</span>
+                      </form>
                       </td>
                       <td>${result.frstRegisterNm}</td>
                       <td>${result.frstRegisterPnttm}</td>
@@ -138,6 +146,13 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  
 
 <%@ include file="../include/footer.jsp" %>
+<script>
+$(document).ready(function(){
+	$(".btn_submit").on("click",function(){
+		var form_object = $(this).parent("form[name='view_form']");
+		form_object.submit();
+	});
+});
+</script>
