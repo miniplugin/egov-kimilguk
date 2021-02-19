@@ -67,6 +67,7 @@
 - egovframework.let.uat.uia.web패키지 안 EgovLoginController.java
 - admin/board/list_board.jsp <-> EgovNoticeList.jsp
 - AdminController.java       <-> EgovBBSManageController.java
+- egov페이징 UI설정: context-common.xml -> ImagePaginationRenderer.java
 - -------------------------------------------------------------
 - 사용자단 메인페이지 UI 변경예정(타일즈템플릿-벨로서티템플릿 jsp UI템플릿을 사용) tiles템플릿을 사용예정.
 - 쉬어가는 시간에 포인터이후 진도확인 및 C언어 은행입출금프로그램 실습예정.
