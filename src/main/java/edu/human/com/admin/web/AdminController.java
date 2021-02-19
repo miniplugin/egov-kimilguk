@@ -22,7 +22,10 @@ import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.let.cop.bbs.service.BoardMasterVO;
 import egovframework.let.cop.bbs.service.BoardVO;
+import egovframework.let.cop.bbs.service.EgovBBSAttributeManageService;
+import egovframework.let.cop.bbs.service.EgovBBSManageService;
 import egovframework.let.utl.sim.service.EgovFileScrty;
+import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
@@ -30,9 +33,13 @@ public class AdminController {
 	
 	@Inject
 	private MemberService memberService;
-	
+	//스프링빈(new키워드만드는 오브젝트X) 오브젝트를 사용하는 방법 @Inject(자바8이상), @Autowired(많이사용), @Resource(자바7이하)
 	@Autowired
 	private EgovBBSAttributeManageService bbsAttrbService;
+	@Autowired
+	private EgovPropertyService propertyService;
+	@Autowired
+	private EgovBBSManageService bbsMngService;
 	
 	@RequestMapping("/admin/board/list_board.do")
 	public String list_board(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
@@ -42,7 +49,7 @@ public class AdminController {
 		boardVO.setBbsNm(boardVO.getBbsNm());
 
 		BoardMasterVO vo = new BoardMasterVO();
-
+		System.out.println("디버그: 게시판아이디는 "+boardVO.getBbsId());
 		vo.setBbsId(boardVO.getBbsId());
 		vo.setUniqId(user.getUniqId());
 
