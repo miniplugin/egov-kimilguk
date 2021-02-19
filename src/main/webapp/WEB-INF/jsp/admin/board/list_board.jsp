@@ -44,14 +44,14 @@
                   <div class="input-group input-group-sm">
                     <!-- 부트스트랩 템플릿만으로는 디자인처리가 부족한 경우가 있기 때문에 종종 인라인 스타일 사용 -->
                     <div>
-                        <select class="form-control">
-                            <option value="" selected>-전체-</option>
-                            <option value="user_id" data-select2-id="8">제목</option>
-                            <option value="user_name" data-select2-id="16">내용</option>
+                        <select name="searchCnd" class="form-control">
+                            <option value="0" <c:if test="${searchVO.searchCnd == '0'}">selected="selected"</c:if> >제목</option>
+							<option value="1" <c:out value="${(searchVO.searchCnd=='1')?'selected':'' }" /> >내용</option>             
+							<option value="2" <c:if test="${searchVO.searchCnd == '2'}">selected="selected"</c:if> >작성자</option>            
                         </select>
                     </div>
                     <div>
-                    <input type="text" name="search_keyword" class="form-control float-right" placeholder="Search">
+                    <input type="text" name="searchWrd" value='<c:out value="${searchVO.searchWrd}"/>' class="form-control float-right" placeholder="Search">
 					</div>
                     <div class="input-group-append">
                       <button type="submit" class="btn btn-default">
@@ -68,14 +68,15 @@
                 <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
-                      <th>bno</th><!-- 테이블 헤드 타이틀태그th -->
-                      <th>title[replycnt]</th>
-                      <th>writer</th>
-                      <th>regdate</th>
-                      <th>viewcnt</th>
+                      <th>번호</th><!-- 테이블 헤드 타이틀태그th -->
+                      <th>제목</th>
+                      <th>작성자</th>
+                      <th>작성일</th>
+                      <th>조회수</th>
                     </tr>
                   </thead>
                   <tbody>
+                  <c:forEach items="">
                     <tr>
                       <td>1</td>
                       <!-- 아래 a링크값은 리스트가 늘어날 수록 동적으로 bno값이 변하게 됩니다. 개발자가 jsp처리 -->
@@ -85,15 +86,7 @@
                       <td><span class="badge bg-danger">3</span></td>
                       <!-- 권한표시는 부트스트랩 뺏지 클래스 사용 -->
                     </tr>
-                    <tr>
-                      <td>2</td>
-                      <!-- 아래 a링크값은 리스트가 늘어날 수록 동적으로 bno값이 변하게 됩니다. 개발자가 jsp처리 -->
-                      <td><a href="board_view.html?bno=2">두번째 게시물 제목[0]</a></td>
-                      <td>user02</td>
-                      <td>2020-12-09</td>
-                      <td><span class="badge bg-danger">0</span></td>
-                      <!-- 권한표시는 부트스트랩 뺏지 클래스 사용 -->
-                    </tr>
+                  </c:forEach>
                   </tbody>
                 </table>
               </div>
