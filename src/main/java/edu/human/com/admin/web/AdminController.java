@@ -55,10 +55,12 @@ public class AdminController {
 	public String delete_board(BoardVO boardVO, RedirectAttributes rdat) throws Exception {
 		FileVO fileVO = new FileVO();
 		if(boardVO.getAtchFileId()!=null || !"".equals(boardVO.getAtchFileId()) ) {
+			System.out.println("디버그:첨부파일ID "+boardVO.getAtchFileId());
 			fileVO.setAtchFileId(boardVO.getAtchFileId());
 			fileMngService.deleteAllFileInf(fileVO);
+			System.out.println("디버그:첨부파일삭제OK");
 		}
-		boardService.delete_board((int)boardVO.getNttId());
+		//boardService.delete_board((int)boardVO.getNttId());
 		rdat.addFlashAttribute("msg", "삭제");
 		return "redirect:/admin/board/list_board.do?bbsId="+boardVO.getBbsId();
 	}
