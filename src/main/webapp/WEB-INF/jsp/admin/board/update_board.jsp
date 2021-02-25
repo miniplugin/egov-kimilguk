@@ -51,8 +51,8 @@
                   	<!-- 필수입력 값은 html5에서 지원하는 유효성 검사중 required 속성을 사용해서 빈(null)값체크(유효성검사)를 합니다. -->
                   </div>
                   <div class="form-group">
-                  	<label for="ntcrNm">writer</label>
-                  	<input value="${result.ntcrNm}" type="text" class="form-control" name="ntcrNm" id="ntcrNm" placeholder="작성자를 입력해 주세요" required>
+                  	<label for="frstRegisterNm">writer</label>
+                  	<input value="${result.frstRegisterNm}" type="text" class="form-control" name="frstRegisterNm" id="frstRegisterNm" placeholder="작성자를 입력해 주세요" required>
                   </div>
                   <div class="form-group" style="margin-bottom:0px;">
                   <label>attach</label>
@@ -83,12 +83,22 @@
               	<!-- a태그는 링크이동은 되지만, post값을 전송하지는 못합니다. 그래서, button태그를 사용. -->
             </div>
           <!-- 버튼영역 끝 -->
-          	<input type="hidden" name="pageIndex" value="<c:out value='${searchVO.pageIndex}'/>">
-			<input type="hidden" name="bbsId" value="<c:out value='${result.bbsId}'/>" >
-			<input type="hidden" name="nttId" value="<c:out value='${result.nttId}'/>" >
-			<input type="hidden" name="parnts" value="<c:out value='${result.parnts}'/>" >
-			<input type="hidden" name="sortOrdr" value="<c:out value='${result.sortOrdr}'/>" >
-			<input type="hidden" name="replyLc" value="<c:out value='${result.replyLc}'/>" >
+          	<input type="hidden" name="pageIndex" value="<c:out value='${searchVO.pageIndex}'/>"/>
+			<input type="hidden" name="returnUrl" value="<c:url value='/cop/bbs/forUpdateBoardArticle.do'/>"/>
+			<input type="hidden" name="bbsId" value="<c:out value='${result.bbsId}'/>" />
+			<input type="hidden" name="nttId" value="<c:out value='${result.nttId}'/>" />
+			<input type="hidden" name="bbsAttrbCode" value="<c:out value='${bdMstr.bbsAttrbCode}'/>" />
+			<input type="hidden" name="bbsTyCode" value="<c:out value='${bdMstr.bbsTyCode}'/>" />
+			<input type="hidden" name="replyPosblAt" value="<c:out value='${bdMstr.replyPosblAt}'/>" />
+			<input type="hidden" name="fileAtchPosblAt" value="<c:out value='${bdMstr.fileAtchPosblAt}'/>" />
+			<input type="hidden" name="posblAtchFileNumber" value="<c:out value='${bdMstr.posblAtchFileNumber}'/>" />
+			<input type="hidden" name="posblAtchFileSize" value="<c:out value='${bdMstr.posblAtchFileSize}'/>" />
+			<input type="hidden" name="tmplatId" value="<c:out value='${bdMstr.tmplatId}'/>" />
+			<input type="hidden" name="ntcrNm" value="dummy">   <!-- validator 처리를 위해 지정 -->
+			<input type="hidden" name="password" value="dummy"> <!-- validator 처리를 위해 지정 -->
+			<input name="ntceBgnde" type="hidden" value="10000101">
+			<input name="ntceEndde" type="hidden" value="99991231">
+			
 			<input type="hidden" name="atchFileId" value="${result.atchFileId}">
 			<input type="hidden" name="fileSn" value="0">
           </form>

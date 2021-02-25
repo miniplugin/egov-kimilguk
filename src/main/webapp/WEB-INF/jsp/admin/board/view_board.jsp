@@ -46,7 +46,7 @@
                 <hr>
                 <strong><i class="fas fa-pencil-alt mr-1"></i> 작성자</strong>
                 <p class="text-muted">
-                ${result.ntcrId}
+                ${result.frstRegisterNm}
                 </p>
                 <c:if test="${not empty result.atchFileId}">
 	                <hr>
