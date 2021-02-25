@@ -30,34 +30,43 @@
           <div class="col-12"><!-- 그리드시스템중 12가로칼럼 width:100% -->
           
           <!-- form start -->
-          <form name="write_form" action="board_list.html" method="post" encType="multipart/form-data">
+          <form name="update_form" action="<c:url value='/admin/board/update_board.do' />" method="post" encType="multipart/form-data">
           
           <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">CREATE Board</h3>
+                <h3 class="card-title">UPDATE Board</h3>
               </div>
               <!-- /.card-header -->
               
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="user_id">title</label>
-                    <input type="text" class="form-control" name="user_id" id="user_id" placeholder="제목을 입력해 주세요." required>
+                    <label for="nttSj">title</label>
+                    <input value="${result.nttSj}" type="text" class="form-control" name="nttSj" id="nttSj" placeholder="제목을 입력해 주세요." required>
                     <!-- 폼에서 input같은 입력태그에는 name속성이 반드시 필요, 이유는 DB에 입력할때,
                     	 값을 전송하게 되는데, 전송값을 담아두는 이름이 name가 되고, 위에서는 user_id 입니다. -->
                   </div>
                   <div class="form-group">
-                  	<label for="content">Content</label>
-                  	<textarea rows="5" name="content" id="content" class="form-control"></textarea>
+                  	<label for="nttCn">Content</label>
+                  	<textarea rows="5" name="nttCn" id="nttCn" class="form-control">${result.nttCn}</textarea>
                   	<!-- 필수입력 값은 html5에서 지원하는 유효성 검사중 required 속성을 사용해서 빈(null)값체크(유효성검사)를 합니다. -->
                   </div>
                   <div class="form-group">
-                  	<label for="email">writer</label>
-                  	<input type="text" class="form-control" name="email" id="email" placeholder="작성자를 입력해 주세요" required>
+                  	<label for="ntcrNm">writer</label>
+                  	<input value="${result.ntcrNm}" type="text" class="form-control" name="ntcrNm" id="ntcrNm" placeholder="작성자를 입력해 주세요" required>
                   </div>
                   <div class="form-group" style="margin-bottom:0px;">
                   <label>attach</label>
                   </div>
                   <div class="custom-file">
+                  	<c:if test="${not empty result.atchFileId}">
+		                <hr>
+		                <strong><i class="far fa-save mr-1"></i> 첨부파일</strong>
+		                <p class="text-muted">
+		                <c:import url="/cmm/fms/selectFileInfs.do" charEncoding="utf-8">
+		                    <c:param name="param_atchFileId" value="${result.atchFileId}" />
+		                </c:import>
+		                </p>
+	                </c:if>
                     <input type="file" name="file" class="custom-file-input" id="customFile">
                     <label class="custom-file-label" for="customFile" style="color:#999;">파일첨부</label>
                   </div>
@@ -69,7 +78,7 @@
           <!-- 버튼영역 시작 -->
             <div class="card-body">
             	<a href="board_list.html" class="btn btn-primary float-right mr-1">LIST ALL</a>
-              	<button type="submit" class="btn btn-danger float-right mr-1">SUBMIT</button>              	
+              	<button type="submit" class="btn btn-danger float-right mr-1">수정</button>              	
               	<!-- a태그는 링크이동은 되지만, post값을 전송하지는 못합니다. 그래서, button태그를 사용. -->
             </div>
           <!-- 버튼영역 끝 -->
@@ -88,3 +97,25 @@
   
 
 <%@ include file="../include/footer.jsp" %>
+<script>
+$(document).ready(function(){
+	$('#nttCn').summernote({
+		height:150,
+		lang:"ko-KR",
+		placeholder:'글 내용을 입력해 주세요',
+		toolbar: [
+				    ['fontname', ['fontname']],
+				    ['fontsize', ['fontsize']],
+				    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+				    ['color', ['forecolor','color']],
+				    ['table', ['table']],
+				    ['para', ['ul', 'ol', 'paragraph']],
+				    ['height', ['height']],
+				    ['insert',['link','video']],//'picture',
+				    ['view', ['fullscreen', 'help']]
+				],
+		fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+		fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+	});
+});//textarea 중 content아이디영역을 섬머노트에디터로 변경처리 함수실행
+</script>
