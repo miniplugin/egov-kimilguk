@@ -77,12 +77,20 @@
           
           <!-- 버튼영역 시작 -->
             <div class="card-body">
-            	<a href="board_list.html" class="btn btn-primary float-right mr-1">LIST ALL</a>
+            	<button id="btn_list" type="button" class="btn btn-primary float-right mr-1">목록</button>
+            	<button id="btn_view" type="button" class="btn btn-primary float-right mr-1">이전</button>            	
               	<button type="submit" class="btn btn-danger float-right mr-1">수정</button>              	
               	<!-- a태그는 링크이동은 되지만, post값을 전송하지는 못합니다. 그래서, button태그를 사용. -->
             </div>
           <!-- 버튼영역 끝 -->
-          
+          	<input type="hidden" name="pageIndex" value="<c:out value='${searchVO.pageIndex}'/>">
+			<input type="hidden" name="bbsId" value="<c:out value='${result.bbsId}'/>" >
+			<input type="hidden" name="nttId" value="<c:out value='${result.nttId}'/>" >
+			<input type="hidden" name="parnts" value="<c:out value='${result.parnts}'/>" >
+			<input type="hidden" name="sortOrdr" value="<c:out value='${result.sortOrdr}'/>" >
+			<input type="hidden" name="replyLc" value="<c:out value='${result.replyLc}'/>" >
+			<input type="hidden" name="atchFileId" value="${result.atchFileId}">
+			<input type="hidden" name="fileSn" value="0">
           </form>
           <!-- 폼내부에 버튼이 있어야지만, 전송버튼이 작동 됩니다. -->
           
@@ -97,6 +105,21 @@
   
 
 <%@ include file="../include/footer.jsp" %>
+<script>
+$(document).ready(function(){
+	var update_form = $("form[name='update_form']");
+	$("#btn_list").on("click",function(){
+		//alert("목록가기!");
+		update_form.attr("action","<c:url value='/admin/board/list_board.do' />");
+		update_form.submit();
+	});
+	$("#btn_view").on("click",function(){
+		//alert("이전화면가기");
+		update_form.attr("action","<c:url value='/admin/board/view_board.do' />")
+		update_form.submit();
+	});
+});
+</script>
 <script>
 $(document).ready(function(){
 	$('#nttCn').summernote({

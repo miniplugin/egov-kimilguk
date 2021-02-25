@@ -102,7 +102,7 @@ $(document).ready(function(){
 	});
 	$("#btn_update").on("click",function(){
 		//alert("준비중 입니다.");
-		action_form.attr("action","<c:url value='/admin/board/update_board.do' />");
+		action_form.attr("action","<c:url value='/admin/board/update_board_form.do' />");
 		action_form.submit();
 	});
 });
