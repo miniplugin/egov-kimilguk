@@ -110,10 +110,12 @@ public class AdminController {
 		    if (!files.isEmpty()) {//첨부파일이 있을때 작동
 		    	//기존 첨부파일이 존재하지 않으면 신규등록
 				if ("".equals(atchFileId)) {
+					System.out.println("디버그1"+atchFileId);
 				    List<FileVO> result = fileUtil.parseFileInf(files, "BBS_", 0, atchFileId, "");
 				    atchFileId = fileMngService.insertFileInfs(result);
 				    board.setAtchFileId(atchFileId);
 				} else {//기본첨부파일이 존재하면 기존 삭제하고, 신규등록
+					System.out.println("디버그2"+atchFileId);
 				    FileVO fvo = new FileVO();
 				    fvo.setAtchFileId(atchFileId);
 				    int cnt = fileMngService.getMaxFileSN(fvo);
@@ -186,11 +188,13 @@ public class AdminController {
 			//물리파일지우려면 2가지값 필수: file_stre_cours, stre_file_nm
 			//실제 폴더에서 파일도 삭제(아래)
 			if(fileVO.getAtchFileId() !=null && fileVO.getAtchFileId() != "") {
-				FileVO delfileVO = fileMngService.selectFileInf(fileVO);
-				File target = new File(delfileVO.getFileStreCours(), delfileVO.getStreFileNm());
-				if(target.exists()) {
-					target.delete();//폴더에서 기존첨부파일 지우기
-					System.out.println("디버그:첨부파일삭제OK");
+				List<FileVO> fileList = fileMngService.selectFileInfs(fileVO);
+				for(FileVO delfileVO:fileList) {
+					File target = new File(delfileVO.getFileStreCours(), delfileVO.getStreFileNm());
+					if(target.exists()) {
+						target.delete();//폴더에서 기존첨부파일 지우기
+						System.out.println("디버그:첨부파일삭제OK");
+					}
 				}
 			}
 			//첨부파일 레코드삭제(아래)
