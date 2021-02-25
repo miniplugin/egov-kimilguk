@@ -230,8 +230,15 @@ public class AdminController {
 		    //게시물 업데이트 레코드 처리(아래)
 		    bbsMngService.updateBoardArticle(board);
 		}
-		
-		return "redirect:/admin/board/list_board.do?bbsId="+board.getBbsId();
+
+		BoardMaster master = new BoardMaster();
+	    BoardMasterVO bmvo = new BoardMasterVO();
+	    master.setBbsId(boardVO.getBbsId());
+	    master.setUniqId(user.getUniqId());
+		return "redirect:/admin/board/view_board.do?bbsId="+board.getBbsId()
+		+"&nttId="+board.getNttId()+"&bbsTyCode="+master.getBbsTyCode()+"&bbsAttrbCode="+master.getBbsAttrbCode()
+		+"&authFlag=Y&pageIndex="+boardVO.getPageIndex();
+		//return "redirect:/admin/board/list_board.do?bbsId="+board.getBbsId();
 	}
 	//게시물 수정 화면을 호출 POST
 	@RequestMapping("/admin/board/update_board_form.do")
