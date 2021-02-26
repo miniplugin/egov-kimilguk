@@ -43,15 +43,13 @@ $(document).ready(function() {
 			<div class="header_cont">
 				<ul class="util clear">
 					<li><a href="<c:url value='/cmm/main/mainPage.do' />">OLD전자정부사이트</a></li>
-					<c:if test="${LoginVO.id eq ''}">
-						<li><a href="login.html">로그인</a></li>
-						<li><a href="join.html">회원가입</a></li>
+					<c:if test="${LoginVO.id eq null || LoginVO.id eq ''}">
+						<li><a href="#">로그인</a></li>
 					</c:if>
-					<c:out value="${LoginVO.id}" />값.
-					<c:if test="${LoginVO.id ne ''}">
+					<c:if test="${LoginVO.id ne null}">
 						<!-- 로그인 후 보이는 메뉴(아래) -->
 						<li><a href="#">${LoginVO.name} 님 환영합니다.</a></li>
-						<li><a href="<c:url value='/uat/uia/actionLogout.do'/>">로그아웃</a></li>
+						<li><a href="<c:url value='/logout.do'/>">로그아웃</a></li>
 						<li><a href="<c:url value='/admin/home.do' />">AdminLTE</a></li>
 					</c:if>
 				</ul>	
