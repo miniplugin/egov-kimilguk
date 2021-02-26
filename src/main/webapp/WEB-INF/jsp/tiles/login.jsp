@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- 메인콘텐츠영역 -->
 	<div id="container">
 		<!-- 메인상단위치표시영역 -->
@@ -18,7 +18,7 @@
 		<!-- 메인본문영역 -->
 		<div class="bodytext_area box_inner">
 			<!-- 폼영역 -->
-			<form method="POST" name="login_form" action="login.html" class="appForm">
+			<form method="POST" name="login_form" action="<c:url value='/uat/uia/actionLogin.do'/>" class="appForm">
 				<fieldset>
 					<legend>로그인폼</legend>
 					<p class="info_pilsoo pilsoo_item">필수입력</p>
@@ -34,9 +34,10 @@
 
 					</ul>
 					<p class="btn_line">
-					<button class="btn_baseColor">로그인</button>
+					<button type="submit" class="btn_baseColor">로그인</button>
 					</p>	
 				</fieldset>
+				<input type="hidden" name="userSe" value="USR">
 			</form>
 			<!-- //폼영역 -->
 		</div>
