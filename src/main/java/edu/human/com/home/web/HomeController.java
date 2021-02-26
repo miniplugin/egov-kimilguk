@@ -8,6 +8,11 @@ import org.springframework.web.context.request.RequestContextHolder;
 @Controller
 public class HomeController {
 	
+	@RequestMapping("/tiles/login.do")
+	public String login() throws Exception {
+		return "login.tiles";
+	}
+	
 	@RequestMapping("/logout.do")
 	public String logout() throws Exception {
 		RequestContextHolder.getRequestAttributes().removeAttribute("LoginVO", RequestAttributes.SCOPE_SESSION);

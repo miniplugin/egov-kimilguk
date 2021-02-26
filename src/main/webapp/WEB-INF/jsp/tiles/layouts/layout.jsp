@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>레이아웃.jsp</title>
+<title>타일즈템플릿사용</title>
 </head>
 <body>
 	<t:insertAttribute name="header"></t:insertAttribute>

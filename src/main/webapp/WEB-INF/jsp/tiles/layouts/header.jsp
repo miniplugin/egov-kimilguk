@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="<c:url value='/' />resources/home/css/main.css">
 <link rel="stylesheet" href="<c:url value='/' />resources/home/css/tablet.css">
 <link rel="stylesheet" href="<c:url value='/' />resources/home/css/pc.css">
+<link rel="stylesheet" href="<c:url value='/' />resources/home/css/board.css">
 <script src="<c:url value='/' />resources/home/js/jquery-1.11.3.min.js"></script>
 <script src="<c:url value='/' />resources/home/js/jquery.smooth-scroll.min.js"></script>
 <script src="<c:url value='/' />resources/home/js/main.js"></script>
@@ -35,7 +36,7 @@ $(document).ready(function() {
 	<header id="header">
 		<div class="header_area box_inner clear">
 			<!-- 상단로고영역 -->
-			<h1><a href="index.html">스프링 in 자바</a></h1>
+			<h1><a href="<c:url value='/' />">스프링 in 자바</a></h1>
 			<!-- //상단로고영역 -->
 			
 			<!-- 상단메뉴메뉴영역 -->
@@ -44,7 +45,7 @@ $(document).ready(function() {
 				<ul class="util clear">
 					<li><a href="<c:url value='/cmm/main/mainPage.do' />">OLD전자정부사이트</a></li>
 					<c:if test="${LoginVO.id eq null || LoginVO.id eq ''}">
-						<li><a href="#">로그인</a></li>
+						<li><a href="<c:url value='/tiles/login.do' />">로그인</a></li>
 					</c:if>
 					<c:if test="${LoginVO.id ne null}">
 						<!-- 로그인 후 보이는 메뉴(아래) -->
