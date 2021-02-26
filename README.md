@@ -61,9 +61,11 @@
 - 기존 egov는 첨부파일을 여러번 입력가능때문에, 우리 삭제로직을 약간변경OK.
 - 글작성에 관련된 insert_board.jsp생성+컨트롤러 추가OK.
 - 관리자단 마무리 -> 사용자단 디자인으로 메인+게시판CRUD
-- 사용자단 resources/home폴더 생성해서 이 디자인 
-- 기존 egov디자인 -> 우리home디자인으로 변경해서 적용
+- 사용자단 resources/home폴더 생성해서 이 디자인OK. 
+- 기존 egov디자인 메인 main폴더 -> 우리home디자인의 메인 home폴더 변경해서 적용
+- 
 - tiles,velocity,thymeleaf 3가지 jsp템플릿 종류중 타일즈 템플릿을 사용해서 home디자인을 사용할 예정. 
+- error_user.jsp 페이지만들어서 1페이지안에 에러메시지 보이게 처리예정.
 
 #### 20210225(목) 작업
 - egov(Mysql) 마무리.
