@@ -14,9 +14,9 @@ public class HomeController {
 		return "redirect:/";
 	}
 	//method.RequestMethod=GET[POST] 없이사용하면, 둘다 허용되는 매핑이됨
-	@RequestMapping("/home.do")
+	@RequestMapping("/tiles/home.do")
 	public String home() throws Exception {
 		
-		return "home/home";
+		return "home.tiles";
 	}
 }

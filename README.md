@@ -70,6 +70,10 @@
 - 로그아웃은 페이지가 없이 처리 되기 때문에 home컨트롤러만 매핑을 추가해서 처리OK.
 - tiles,velocity,thymeleaf 3가지 jsp템플릿 종류중 타일즈 템플릿을 사용해서 home디자인을 사용할 예정. 
 - IT강의저장소 V9.0.0 하단 자료를 참조.
+- tiles의 타일 목욕탕의 타일붙여서 사용하는 내용과 의미가 비슷.
+- /tiles/home.do 호출 -> home.tiles 파일호출 타일즈설정이 가로챕니다.(layout.jsp파일에서 가로챔)
+- /WEB-INF/jsp/tiles/{1}.jsp 바인딩 -> content이름에 담겨서...
+- /WEB-INF/jsp/tiles/layouts/layout.jsp 이파일의 content이름에 나오게됨
 - error_user.jsp 페이지만들어서 1페이지안에 에러메시지 보이게 처리예정.
 
 #### 20210225(목) 작업
