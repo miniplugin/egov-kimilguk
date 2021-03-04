@@ -56,6 +56,8 @@
 김기명, 신숙정, 이찬홍, 이규혁, 정도영, 남가인, 이희탁, 이시은, 임송하, 정동규,
 
 #### 20210304(목) 작업.
+- 페이징처리: list_board.jsp가 실행될때 -> ui:pagination의 type='paging' 타입이 호출 
+- -> context-common.xml 의 paginationManager(빈)이 실행 -> rendererType이 paging인 pageRenderer(빈)이 실행
 - jsp 의 EL(Express Language)표기법 사용해서 변수 출력.
 - 이중for문은: 출력시 2차원배열(표)를 출력합니다.
 - 단일for문은: 1차원배열
