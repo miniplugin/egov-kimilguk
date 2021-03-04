@@ -15,6 +15,7 @@ import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.let.cop.bbs.service.BoardMasterVO;
 import egovframework.let.cop.bbs.service.BoardVO;
 import egovframework.let.cop.bbs.service.EgovBBSAttributeManageService;
+import egovframework.let.cop.bbs.service.EgovBBSManageService;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -26,7 +27,7 @@ public class HomeController {
 	@Autowired
 	private EgovPropertyService propertyService;
 	@Autowired
-	private EgovBbsMngService bbsMngService;
+	private EgovBBSManageService bbsMngService;
 	
 	@RequestMapping("/tiles/board/list_board.do")
 	public String list_board(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
