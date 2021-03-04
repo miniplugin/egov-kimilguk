@@ -84,19 +84,6 @@
            	</div>
 	  		<!-- 페이징처리 끝 --> 
 	  		
-			<!-- 페이징처리영역 -->
-			<div class="pagination">
-				<a href="javascript:;" class="firstpage  pbtn"><img src="<c:url value='/' />resources/home/img/btn_firstpage.png" alt="첫 페이지로 이동"></a>
-				<a href="javascript:;" class="prevpage  pbtn"><img src="<c:url value='/' />resources/home/img/btn_prevpage.png" alt="이전 페이지로 이동"></a>
-				<a href="javascript:;"><span class="pagenum currentpage">1</span></a>
-				<a href="javascript:;"><span class="pagenum">2</span></a>
-				<a href="javascript:;"><span class="pagenum">3</span></a>
-				<a href="javascript:;"><span class="pagenum">4</span></a>
-				<a href="javascript:;"><span class="pagenum">5</span></a>
-				<a href="javascript:;" class="nextpage  pbtn"><img src="<c:url value='/' />resources/home/img/btn_nextpage.png" alt="다음 페이지로 이동"></a>
-				<a href="javascript:;" class="lastpage  pbtn"><img src="<c:url value='/' />resources/home/img/btn_lastpage.png" alt="마지막 페이지로 이동"></a>
-			</div>
-			<!-- //페이징처리영역 -->
 			<p class="btn_line">
 				<a href="board_write.html" class="btn_baseColor">등록</a>
 			</p>
