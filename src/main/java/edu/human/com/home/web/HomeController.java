@@ -419,8 +419,30 @@ public class HomeController {
 	}
 	//method.RequestMethod=GET[POST] 없이사용하면, 둘다 허용되는 매핑이됨
 	@RequestMapping("/tiles/home.do")
-	public String home() throws Exception {
+	public String home(ModelMap model) throws Exception {
+		//메인 페이지에 최근 게시물 출력하는 서비스 호출전 Get/Set
+		BoardVO boardVO = new BoardVO();
+		Map<String,Object> boardMap = null;
+		boardVO.setPageUnit(3);//1페이당 출력할 개수
+		boardVO.setPageSize(10);//리스트하단 표시할 페이징 개수
+		boardVO.setBbsId("BBSMSTR_BBBBBBBBBBBB");//겔러리3개
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(boardVO.getPageIndex());
+		paginationInfo.setRecordCountPerPage(boardVO.getPageUnit());
+		paginationInfo.setPageSize(boardVO.getPageSize());
+		boardVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		boardVO.setLastIndex(paginationInfo.getLastRecordIndex());
+		boardVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+
+		boardMap = bbsMngService.selectBoardArticles(boardVO, "BBSA02");
+		System.out.println("디버그:"+boardMap.get("resultList"));
+		model.addAttribute("galleryList", boardMap.get("resultList"));
 		
+		boardVO.setPageUnit(5);
+		boardVO.setBbsId("BBSMSTR_AAAAAAAAAAAA");
+		boardMap = bbsMngService.selectBoardArticles(boardVO, "BBSA02");
+		model.addAttribute("noticeList", boardMap.get("resultList"));
 		return "home.tiles";
 	}
 }
