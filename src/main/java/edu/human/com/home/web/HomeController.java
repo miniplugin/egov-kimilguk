@@ -40,10 +40,10 @@ public class HomeController {
 	
 	@RequestMapping("/tiles/board/insert_board_form.do")
 	public String insert_board_form(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
-		// 사용자권한 처리
+		// 사용자권한 처리: 로그인상태가 아니면 if문안쪽실행
 		if(!EgovUserDetailsHelper.isAuthenticated()) {
 			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
-	    	return "cmm/uat/uia/EgovLoginUsr";
+	    	return "login.tiles";
 		}
 
 	    LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
