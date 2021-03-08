@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
 <style>
+.img_topplace { opacity:0.7; }
 .img_topplace:hover {/*가상선택자 :, 가성요소 ::*/
-	opacity:0.7;
+	opacity:1.0;
 }
 </style>
 	<!-- 메인콘텐츠영역 -->
