@@ -57,6 +57,18 @@
 
 #### 20210309(화) 작업예정.
 - 사용자단(관리자단) 페이징 처리 확인(글10개이상입력필요)예정.
+- 수정할 부분(아래 코드를 list_board.jsp 상단에 넣으면 됩니다.)
+
+```
+아래 자바스크립트 추가필요
+<script>
+function fn_egov_select_noticeList(pageNo) {
+    document.search_form.pageIndex.value = pageNo;
+    document.search_form.submit();  
+}
+</script>
+디자인 깨지는 것은 PaginationRenderer 클래스의 paganum CSS클래스명이 잘못 들어가 있어서 깨짐, 수정필요
+```
 - AVD에 헬로원월드앱 1개 생성해서 배포예정.
 - 3교시 과제물확인 후 -4교시 요구사항확인 과제물제출예정.
 - 11번과목 애플리케이션 설계과목 진도나감(과제물내용부터살펴봄).
