@@ -58,7 +58,12 @@
 					<c:forEach items="${galleryList}" var="galleryVO">
 					<li class="view_detail" style="cursor:pointer">
 					<form name="view_form" action="<c:url value='/tiles/board/view_board.do' />" method="post">
-						<img class="img_topplace" src="<c:url value='/' />resources/home/img/no_image.png" alt="OOOO OOOOO" style="opacity:0.7;"/>
+						<c:if test="${empty galleryVO.atchFileId}">
+							<img class="img_topplace" src="<c:url value='/' />resources/home/img/no_image.png" alt="OOOO OOOOO" style="opacity:0.7;"/>
+						</c:if>
+						<c:if test="${not empty galleryVO.atchFileId}">
+							<img class="img_topplace" src="<c:url value='/tiles/board/previewImage.do' />?atchFileId=${galleryVO.atchFileId}" style="opacity:0.7;" />
+						</c:if>
 						<h3>${galleryVO.nttSj}</h3>
 						<p class="txt">
 						${galleryVO.nttCn}
