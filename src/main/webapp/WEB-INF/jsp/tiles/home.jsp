@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
+<style>
+.img_topplace:hover {/*가상선택자 :, 가성요소 ::*/
+	opacity:0.7;
+}
+</style>
 	<!-- 메인콘텐츠영역 -->
 	<div id="container">
 		<!-- 모바일+PC 공통슬라이드영역 -->
@@ -59,10 +64,10 @@
 					<li class="view_detail" style="cursor:pointer">
 					<form name="view_form" action="<c:url value='/tiles/board/view_board.do' />" method="post">
 						<c:if test="${empty galleryVO.atchFileId}">
-							<img class="img_topplace" src="<c:url value='/' />resources/home/img/no_image.png" alt="OOOO OOOOO" style="opacity:0.7;"/>
+							<img class="img_topplace" src="<c:url value='/' />resources/home/img/no_image.png" alt="OOOO OOOOO" />
 						</c:if>
 						<c:if test="${not empty galleryVO.atchFileId}">
-							<img class="img_topplace" src="<c:url value='/tiles/board/previewImage.do' />?atchFileId=${galleryVO.atchFileId}" style="opacity:0.7;" />
+							<img class="img_topplace" src="<c:url value='/tiles/board/previewImage.do' />?atchFileId=${galleryVO.atchFileId}" />
 						</c:if>
 						<h3>${galleryVO.nttSj}</h3>
 						<p class="txt">
