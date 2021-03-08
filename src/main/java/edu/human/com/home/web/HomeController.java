@@ -79,10 +79,30 @@ public class HomeController {
 		}
 		//위에서 구한 첨부파일 저장위치, 저장파일명을 가지고, 화면에 뿌려짐-스트리밍(아래) 
 		File file = new File(fileVO.getFileStreCours(),fileVO.getStreFileNm());
-		//스트리밍에 필요한 클래스 변수 생성(아래 3가지)
-		FileInputStream fis = null;
-		BufferedInputStream bis = null;
-		ByteArrayOutputStream baos = null;
+		//스트리밍에 필요한 클래스 변수(오브젝트객체) 생성(아래 3가지)
+		FileInputStream fis = new FileInputStream(file);//저장된파일을 스트림클래스를 이용해서 읽어들임
+		BufferedInputStream bis = new BufferedInputStream(fis);//fis인풋스트림을 받아서 버퍼에 저장
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		int imgByte;//while반복문의 반복조건에 사용될 변수
+		while( (imgByte=bis.read()) != -1 ) {
+			baos.write(imgByte);
+		}
+		//여기까지가 출력버퍼 baos객체에 이미지내용을 임시저장한 상태
+		String type = "";//type변수 초기화
+		if(fileVO.getFileExtsn() !=null && !"".equals(fileVO.getFileExtsn()) ) {
+			//첨부파일 확장이름 존재하면, 이미지파일을 체크함(아래)
+			if("jpg".equals(fileVO.getFileExtsn().toLowerCase())) {
+				type = "image/jpeg";//jpg != jpeg 이름이 틀려서
+			} else {
+				type = "imge/" + fileVO.getFileExtsn().toLowerCase();
+			}
+		}
+		//브라우저에서 출력하는 response응답코드(아래)
+		response.setHeader("Content-Type", type);
+		response.setContentLength(baos.size());
+		baos.writeTo(response.getOutputStream());//실제출력전송
+		response.getOutputStream().flush();//실제화면출력됨
+		response.getOutputStream().close();//응답객체종료하기
 	}
 	
 	@RequestMapping("/tiles/board/update_board.do")
