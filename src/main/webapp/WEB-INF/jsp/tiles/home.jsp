@@ -110,17 +110,17 @@
 					</h3>
 					<ul class="notice_recent">
 						<c:forEach items="${noticeList}" var="noticeVO">
-						<li class="view_detail" style="cursor:pointer">
-						<form name="view_form" action="<c:url value='/tiles/board/view_board.do' />" method="post">
-						<c:out value='${fn:substring(noticeVO.nttSj.replaceAll("\\\<.*?\\\>",""),0,20)}' /> 
-						<input type="hidden" name="bbsId" value="<c:out value='${noticeVO.bbsId}'/>" />
-                        <input type="hidden" name="nttId"  value="<c:out value="${noticeVO.nttId}"/>" />
-                        <input type="hidden" name="bbsTyCode" value="<c:out value='${noticeVO.bbsTyCode}'/>" />
-                        <input type="hidden" name="bbsAttrbCode" value="<c:out value='${noticeVO.bbsAttrbCode}'/>" />
-                        <input type="hidden" name="authFlag" value="<c:out value='Y'/>" />
-                        <input name="pageIndex" type="hidden" value="<c:out value='1'/>"/>
-						</form>
-						</li>
+							<li class="view_detail" style="cursor:pointer">
+							<form name="view_form" action="<c:url value='/tiles/board/view_board.do' />" method="post">
+							<c:out value='${fn:substring(noticeVO.nttSj.replaceAll("\\\<.*?\\\>",""),0,20)}' /> 
+							<input type="hidden" name="bbsId" value="<c:out value='${noticeVO.bbsId}'/>" />
+	                        <input type="hidden" name="nttId"  value="<c:out value="${noticeVO.nttId}"/>" />
+	                        <input type="hidden" name="bbsTyCode" value="<c:out value='${noticeVO.bbsTyCode}'/>" />
+	                        <input type="hidden" name="bbsAttrbCode" value="<c:out value='${noticeVO.bbsAttrbCode}'/>" />
+	                        <input type="hidden" name="authFlag" value="<c:out value='Y'/>" />
+	                        <input name="pageIndex" type="hidden" value="<c:out value='1'/>"/>
+							</form>
+							</li>
 						</c:forEach>
 					</ul>
 				</div>
