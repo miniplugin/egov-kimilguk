@@ -66,6 +66,8 @@
 - egov프로젝트 사용자단에서 회원 가입/마이페이지 생성하기 예정.
 
 #### 20210312(금) 작업.
+- 이클립스(큰형), STS, VS code, 안드로이드스튜디오, 인텔리J
+- SQL디벨러퍼(오라클db),워크벤치(Mysql,마리아db),SQLite브라우저
 - https://github.com/miniplugin/SQLite-kimilguk
 - SQLite앱 메인액티비티 자바쪽 작업예정.
 - xml UI단<->SQLite디비생성<->자바 메인액티비티단
