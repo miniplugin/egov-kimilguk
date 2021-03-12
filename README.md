@@ -66,6 +66,7 @@
 - xml UI단<->SQLite디비생성<->자바 메인액티비티단
 - SQLite생성: DatabaseHelper.java 클래스를 생성OK.
 - SQLite DB는 있으나, DBMS가 없어요(오라클,Mysql) 개발자가 직접코드로  데이터베이스파일을 만듭니다. school.db 데이터베이스명.
+- SQLite데이터베이스 내용확인 툴: https://sqlitebrowser.org/dl/
 - DataBaseTables.java 계약서(Contract)생성.(필드명을 1곳에서 관리)
 - student 테이블 생성. 메인액티비티에서 insert 더미실행OK.
 - 다음주에 XML화면과 메인액티비티JAVA와 데이터연동 및 화면재생하는 실습예정.
