@@ -87,11 +87,24 @@ public Boolean getAuthorities() throws Exception {
 ```
 // new 사용자권한 처리
    if(!commUtil.getAuthorities()) {
-        model.addAttribute("message", "관리자로 접근할 수 없습니다.");
+        model.addAttribute("msg", "관리자로 접근할 수 없습니다. 홈페이지로 돌아가기");
         return "home.tiles";
    }
 ```
+- 로그인시 세션 처리 commonUtil클래스의 메서드에 아래내용추가 및 jsp수정
+
+```
+EmployerInfoVO memberVO = memberService.viewMember(resultVO.getId());
+if("GROUP_00000000000000".equals(memberVO.getGROUP_ID())) { 
+	request.getSession().setAttribute("ROLE_ADMIN", memberVO.getGROUP_ID());
+};
+//마지막으로 사용자단 header.jsp에 아래내용으로 수정
+<c:if test="${ROLE_ADMIN ne null}">
+	<li><a href="<c:url value='/admin/home.do' />">AdminLTE</a></li>
+/c:if>
+```
 - AdminLTE 관리자단 대시보드에 최신회원등록자5명 및 최신공지사항/겔러리 5개 출력디자인 추가예정.
+- 사용자단 글 수정시 본인 글만 수정가능하게 처리예정.
 
 #### 20210312(금) 작업.
 - 이클립스(큰형), STS, VS code, 안드로이드스튜디오, 인텔리J
