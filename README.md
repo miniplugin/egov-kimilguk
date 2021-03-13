@@ -69,18 +69,18 @@
 
 ```
 public Boolean getAuthorities() throws Exception {
-		Boolean authority = Boolean.FALSE;
-		if (EgovObjectUtil.isNull((LoginVO) RequestContextHolder.getRequestAttributes().getAttribute("LoginVO", RequestAttributes.SCOPE_SESSION))) {
-			// 로그인세션이 없으면 즉, 로그인 하지 않으면;
-			return authority;
-		}
-		LoginVO sessionLoginVO = (LoginVO) RequestContextHolder.getRequestAttributes().getAttribute("LoginVO", RequestAttributes.SCOPE_SESSION);
-		EmployerInfoVO memberVO = memberService.viewMember(sessionLoginVO.getId());
-		if("GROUP_00000000000000".equals(memberVO.getGROUP_ID())) { 
-		  authority = Boolean.TRUE;
-		};
+	Boolean authority = Boolean.FALSE;
+	if (EgovObjectUtil.isNull((LoginVO) RequestContextHolder.getRequestAttributes().getAttribute("LoginVO", RequestAttributes.SCOPE_SESSION))) {
+		// 로그인세션이 없으면 즉, 로그인 하지 않으면;
 		return authority;
 	}
+	LoginVO sessionLoginVO = (LoginVO) RequestContextHolder.getRequestAttributes().getAttribute("LoginVO", RequestAttributes.SCOPE_SESSION);
+	EmployerInfoVO memberVO = memberService.viewMember(sessionLoginVO.getId());
+	if("GROUP_00000000000000".equals(memberVO.getGROUP_ID())) { 
+	  authority = Boolean.TRUE;
+	};
+	return authority;
+}
 ```
 - admin컨트롤러단 사용자권한 처리 부분 모두 변경(아래)
 
