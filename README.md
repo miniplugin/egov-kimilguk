@@ -64,7 +64,33 @@
 #### 20210315(월) 작업예정.
 - XML화면과 메인액티비티JAVA와 데이터연동 및 화면재생하는 실습예정.
 - egov프로젝트 사용자단에서 회원탈퇴기능 마무리.
-- egov프로젝트 권한 기능 추가(GroupID로 사용자그룹,관리자그룹 세션생성)
+- egov프로젝트 권한 기능 추가(GroupID로 사용자그룹,관리자그룹체크해서 AdminLTE못 들어가게 처리)
+- commonUtil클래스에 관리자 권한 체크하는 메서드 추가(아래)
+
+```
+public Boolean getAuthorities() throws Exception {
+		Boolean authority = Boolean.FALSE;
+		if (EgovObjectUtil.isNull((LoginVO) RequestContextHolder.getRequestAttributes().getAttribute("LoginVO", RequestAttributes.SCOPE_SESSION))) {
+			// 로그인세션이 없으면 즉, 로그인 하지 않으면;
+			return authority;
+		}
+		LoginVO sessionLoginVO = (LoginVO) RequestContextHolder.getRequestAttributes().getAttribute("LoginVO", RequestAttributes.SCOPE_SESSION);
+		EmployerInfoVO memberVO = memberService.viewMember(sessionLoginVO.getId());
+		if("GROUP_00000000000000".equals(memberVO.getGROUP_ID())) { 
+		  authority = Boolean.TRUE;
+		};
+		return authority;
+	}
+```
+- admin컨트롤러단 사용자권한 처리 부분 모두 변경(아래)
+
+```
+// new 사용자권한 처리
+   if(!commUtil.getAuthorities()) {
+        model.addAttribute("message", "관리자로 접근할 수 없습니다.");
+        return "home.tiles";
+   }
+```
 - AdminLTE 관리자단 대시보드에 최신회원등록자5명 및 최신공지사항/겔러리 5개 출력디자인 추가예정.
 
 #### 20210312(금) 작업.
