@@ -74,8 +74,8 @@
 -- (주의:egovframework.rte.fdl.security-3.10.0.jar버전으로 해야 하지만, 에러가 발생되어서 3.9.0.jar버전으로 다운그레이션 합니다.
 - 순서2. context-sucurity.xml 추가
 -- 기술참조: https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rtea3.9
-- 스프링프로젝트는 xml에 화면(URL)권한에 대한설정이 존재.
-- egov프로젝트는 xml에 화면(URL)권한에 대한설저이 존재X, authrole테이블에 위 화면권한설정 존재.
+- 이전 스프링프로젝트는 xml에 화면(URL)권한에 대한설정이 존재.
+- egov프로젝트는 xml에 화면(URL)권한에 대한설정이 존재X, authrole테이블에 위 화면권한설정 존재.
 - 그룹정보 테이블 내용을 변겅(아래)- 우리 egov프로젝트는 3개의 권한으로 화면을 제어할 예정.
 - 'GROUP_00000000000000','ROLE_ADMIN' , '관리자그룹'
 - 'GROUP_00000000000001','ROLE_USER' , '사용자그룹'
@@ -102,8 +102,8 @@
 -- web.xml에 필터체인 부분 확인(필수확인)
 -- 체인이란 예를들면: admin [ROLE_ADMIN,ROLE_USER,ROLE_ANONYMOUSE]
 -- 체인이란 예를들면: user [ROLE_USER,ROLE_ANONYMOUSE]
-- 순서3. CommonUtil.java 클래스에 스프링시큐리티 코딩추가
-- 순서4. EgovUserDetailsHelper.getAuthorities() 메서드 수정.
+- 순서3. CommonUtil.java 클래스에 스프링시큐리티 코딩추가(*세션저장로직이 추가)
+- 순서4. EgovUserDetailsHelper.getAuthorities() 메서드를 복사 CommonUtil클래스에 생성.
 -- 인증된 사용자의 권한 정보를 가져온다
 - ------------------------------------------------------
 - *스프링 시큐리티 화면권한을 DB로 제어하기(입력순서중요): 관리자에서 추가/삭제/수정할 수 있는 기능 추가(아래)
