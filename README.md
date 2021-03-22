@@ -59,17 +59,17 @@
 김기명, 신숙정, 이찬홍, 이규혁, 정도영, 남가인, 이희탁, 이시은, 임송하, 정동규,
 
 #### 20210323(화) 작업예정.
-- 글 수정/삭제 는 본인이 작성한 글만 수정/삭제가 가능하도록예정.(아래 2가지방법 중 괞찮은것 사용.)
+- 스프링 시큐리티 기반 글 수정/삭제 는 본인이 작성한 글만 수정/삭제가 가능하도록예정.
 - 기본지식: 회원관리테이블의 esntl_id필드값이 게시판테이블의 등록자아이디(frst_register_id)값과 동일 합니다.
-- 위내을 참조하여 세션값(LoginVO.uniqId)값과 게시판(frstRegisterId)을 비교해서, 본인글인지 확인처리 합니다.
+- 위내을 참조하여 세션값(LoginVO.uniqId)값과 게시판(frstRegisterId)을 비교해서, 본인글인지 확인처리 합니다.(아래2가지 방법중 택1)
 
 ```
-// 업데이트 컨트롤러에서 본인글 체크
+// 방법1: 업데이트 컨트롤러에서 본인글 체크
 if(!user.getUniqId().equals(bdvo.getFrstRegisterId())) {
 	model.addAttribute("msg", "본인이 작성한 글만 수정이 가능합니다\\n 이전페이지로 이동합니다.");
 	return "board/view_board.tiles";
 }
-// JSP에서 버튼에서부터 본인글 체크
+// 방법2: JSP에서 버튼에서부터 본인글 체크
 <c:if test="${LoginVO.uniqId eq result.frstRegisterId}">
 수정/삭제버튼
 </c:if>
