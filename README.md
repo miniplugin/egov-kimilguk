@@ -58,10 +58,92 @@
 <온라인=10명>
 김기명, 신숙정, 이찬홍, 이규혁, 정도영, 남가인, 이희탁, 이시은, 임송하, 정동규,
 
-#### V11.0.0 애플리케이션설계 시험(혼합시험) 준비OK.
-- 과제물제출: hrd-net 오픈API사용에 관련된 문서작업.
-- 서술형문제2가지분야2문제: 전자정부표준프레임워크관련 문제2개.(*일정관리모듈) 
-- 서술형문제2가지분야2문제: 스프링프레임워크관련 문제2개.(MVC,애노테이션)
+#### 20210323(화) 작업예정.
+- 글 수정/삭제 는 본인이 작성한 글만 수정/삭제가 가능하도록예정.
+- 애플리케이션 테스트 수행 과제물제출(시험): 아키텍쳐구조도엑셀파일,스프링프로젝트 매뉴얼ppt파일 제출
+- IoT 수업진도
+- 구름코딩테스트 문제풀이예정.(구름IDE로 진행예정).
+- 화면권한추가를 관리자단 권한관리메뉴 추가 후 CRUD 작업예정.
+
+#### 20210322(월) 작업.
+- egov프로젝트에 스프링 시큐리티 적용.
+- 기존 로그인시 2가지 절차 있음, 전자정부 인증 + 우리 개발자가 추가한 ROLE_ADMIN 권한기능 추가.
+- 신규 로그인시 변경된 부분은 전자정부 인증은 그대로 + 스프링시큐리티로 권한기능을 추가한다.
+- 기술참조1-5단계 실행: https://github.com/miniplugin/egov
+- 순서1. pom.xml 수정 
+-- (주의:egovframework.rte.fdl.security-3.10.0.jar버전으로 해야 하지만, 에러가 발생되어서 3.9.0.jar버전으로 다운그레이션 합니다.
+- 순서2. context-sucurity.xml 추가
+-- 기술참조: https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rtea3.9
+- 스프링프로젝트는 xml에 화면(URL)권한에 대한설정이 존재.
+- egov프로젝트는 xml에 화면(URL)권한에 대한설저이 존재X, authrole테이블에 위 화면권한설정 존재.
+- 그룹정보 테이블 내용을 변겅(아래)- 우리 egov프로젝트는 3개의 권한으로 화면을 제어할 예정.
+- 'GROUP_00000000000000','ROLE_ADMIN' , '관리자그룹'
+- 'GROUP_00000000000001','ROLE_USER' , '사용자그룹'
+- 'GROUP_00000000000002','ROLE_ANONYMOUS', '비회원그룹'
+- 일반:게시판을 생성시, 다음권한 설정 묻고답하기 게시판을 생성, 관리자전용, 회원사용가능, 비회원사용가능
+- 스프링:게시판 생성시 권한설정X, 관리자권한설정 URL을 등록해서 설정을 하게 됩니다(아래).
+- INSERT INTO AUTHORROLE VALUES(12,'/tiles/board/insert_board_form.*BBSMSTR_AAAAAAAAAAAA','ROLE_ADMIN','관리자만전체허용',12,'Y');
+- 참고로 이전 스프링프로젝트 화면권한은 아래와 같았습니다.
+
+```
+<!-- 특정 url 패턴에 해당하는 권한 부여(아래) -->
+<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+<security:intercept-url pattern="/**/*_write" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" method="GET"/>
+<security:intercept-url pattern="/**/*_update" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+<security:intercept-url pattern="/**/*_delete" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+<security:intercept-url pattern="/**/member/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+<security:intercept-url pattern="/**" access="permitAll"/>
+<security:csrf disabled="true"/>
+```
+- 전자정부에서는 위 인터셉터 url 내용을 쿼리로 대체 합니다.(아래 *스프링 시큐리티 화면권한을 DB로 제어하기 참조)
+- 순서3. edu.human.com.authorrole 패키지의 EgovSessionMapping 클래스 추가(역할은 아래).
+-- 사용자정보를 테이블을 쿼리할때 EgovUsersByUsernameMapping 에 매핑한후 세션변수를 발생.
+-- currentMaxSession은 상황: admin, PC접속중, 다른 노트북으로 로그인했을때, admin세션이 2개 발생 방지. (현재접속중PC가 강제 로그아웃되고, 노트북 로그인 가능하게 됩니다.) 2로 변경.
+-- web.xml에 필터체인 부분 확인(필수확인)
+-- 체인이란 예를들면: admin [ROLE_ADMIN,ROLE_USER,ROLE_ANONYMOUSE]
+-- 체인이란 예를들면: user [ROLE_USER,ROLE_ANONYMOUSE]
+- 순서3. CommonUtil.java 클래스에 스프링시큐리티 코딩추가
+- 순서4. EgovUserDetailsHelper.getAuthorities() 메서드 수정.
+-- 인증된 사용자의 권한 정보를 가져온다
+- ------------------------------------------------------
+- *스프링 시큐리티 화면권한을 DB로 제어하기(입력순서중요): 관리자에서 추가/삭제/수정할 수 있는 기능 추가(아래)
+
+```
+DROP TABLE IF EXISTS `AUTHORROLE`;
+CREATE TABLE IF NOT EXISTS `AUTHORROLE` (
+  `AUTHORROLE_ID` decimal(20,0) NOT NULL,
+  `ROLE_PTTRN` varchar(255) NOT NULL,
+  `AUTHOR_CODE` varchar(255) NOT NULL,
+  `AUTHORROLE_DC` VARCHAR(255) DEFAULT NULL,
+  `SORT_ORDR` decimal(8,0) DEFAULT NULL,
+  `USE_AT` char(1) NOT NULL,
+  PRIMARY KEY (`AUTHORROLE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO AUTHORROLE VALUES(1,'/.*.*.*','ROLE_ANONYMOUS','전체허용',1,'Y');
+INSERT INTO AUTHORROLE VALUES(2,'/cop/com/.*.do.*','ROLE_ANONYMOUS','전체허용',2,'Y');
+INSERT INTO AUTHORROLE VALUES(3,'/cop/bbs/*Master*.do','ROLE_USER','사용자만허용게시판',3,'Y');
+INSERT INTO AUTHORROLE VALUES(4,'/uat/uia/.*.do.*','ROLE_USER','사용자만허용',4,'Y');
+INSERT INTO AUTHORROLE VALUES(5,'/uss/umt/mber/.*.do.*','ROLE_USER','사용자만허용',5,'Y');
+INSERT INTO AUTHORROLE VALUES(6,'/uat/uia/actionLogin.do','ROLE_ANONYMOUS','전체허용',6,'Y');
+INSERT INTO AUTHORROLE VALUES(7,'/uat/uia/egovLoginUsr.do','ROLE_ANONYMOUS','전체허용',7,'Y');
+INSERT INTO AUTHORROLE VALUES(8,'/tiles/login.do','ROLE_ANONYMOUS','전체허용',8,'Y');
+INSERT INTO AUTHORROLE VALUES(9,'/login_action.do','ROLE_ANONYMOUS','전체허용',9,'Y');
+INSERT INTO AUTHORROLE VALUES(10,'/cop/bbs/*Master*.do','ROLE_USER','사용자만허용',10,'Y');
+INSERT INTO AUTHORROLE VALUES(11,'/admin/.*.*.*','ROLE_ADMIN','관리자만전체허용',11,'Y');
+```
+- 나중에 아래 내용을 입력해서 관리자만, 공지사항 입력 가능하게 처리
+- INSERT INTO AUTHORROLE VALUES(12,'/tiles/board/insert_board_form.*BBSMSTR_AAAAAAAAAAAA','ROLE_ADMIN','관리자만전체허용',12,'Y');
+- 스프링 시큐리티 화면권한 AUTHORROLE테이블을 관리자에서 지정할 수 있게 추가(R만): 기술참조 1)~4)작업
+- 스프링 시큐리티 화면권한 AUTHORROLE테이블을 관리자에서 지정할 수 수 있게 추가(CRUD모두)
+
+```
+참고로 권한 설정이 수정 되시면 서버를 재기동 하셔야 합니다.
+재기동 없이 설정 변경시 자동으로 권한을 반영하는 로직은 아래 링크를 참조하시면 되십니다.
+https://open.egovframe.go.kr/cop/bbs/selectBoardArticle.do?bbsId=BBSMSTR_000000000013&nttId=17515
+```
+- 구름 온라인코딩테스트 문제1번: 
+-- 구름온라인코딩테스트는 문의결과 1인당 1만5천원 정도 금액으로 이용할 수 있음. 그래서, 오늘부터는 구름IDE로 진행 예정.(구름IDE에 Java_Test콘테이너 생성)
 
 #### 20210316(화) 작업.
 - 수업전: 홈페이지 상단의 로그아웃시 세션 날리는 부분 확인OK, 
