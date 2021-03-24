@@ -59,12 +59,19 @@
 <온라인=10명>
 김기명, 신숙정, 이찬홍, 이규혁, 정도영, 남가인, 이희탁, 이시은, 임송하, 정동규,
 
-#### 20210324(수) 작업예정.
-- https://www.tinkercad.com/ 팅커캐드 신규회로 작성부터 새로 시작 하겠습니다.
-- 노드MCU보드 설명.
-- 아두이노IDE설치(이클립스와 동급IDE).
-- 틈틈이 임베디드 용어설명.
+#### 20210324(수) 작업.
 - 과제물 서식ppt: 문제2개 같이진행(소스주석).
+- 아두이노 프로그래밍언어를 C언어기반으로 된 스케치 프로그래밍 이라고 합니다.
+- 스케치프로그래밍의 기본서식은 아래 2가지 함수로 구성됩니다.
+- void setup() { //전원ON시 초기 1회만 실행. }
+- void loop()  { //전원ON시 무한 실행 }
+- https://www.tinkercad.com/ 팅커캐드 신규회로 작성부터 새로 시작 하겠습니다.
+- 아두이노IDE설치(이클립스와 동급IDE).
+- 노드MCU보드 설명.
+- 틈틈이 임베디드 용어설명.
+- 아두이노 우노 ( https://cocoon1787.tistory.com/19 )
+- 노드MCU ( https://blog.naver.com/PostView.nhn?blogId=roboholic84&logNo=221187841348 )
+- 아두이노 메가 ( https://m.blog.naver.com/PostView.nhn?blogId=eduino&logNo=220866965756&proxyReferer=https:%2F%2Fwww.google.com%2F )
 - --------------------------------------------
 - 기존 스프링프로젝트 시큐리티에서는 xml에서 화면URL로 권한체크 
 - > egov시큐리티에서는 DB테이블에서 등록한 화면URL로 권한체크
@@ -96,14 +103,14 @@ if(!user.getUniqId().equals(bdvo.getFrstRegisterId())) {
 - 위 반도체 칩은 안드로이드 스튜에서 빌드할 때 AVD(스마트폰)에 배포같은 역할.
 - 반도체에서 사용되는 이벤트(액션)은 : +(1,RED,High), -(0,검은색,LOW-GND)
 - UART통신(=USB to Serial통신): PC(아두이노IDE)에서 USB포트 통해서 반도체보드(아두이노)로 라이팅하게 됩니다.
-- GPIO디지털핀 (General Purpose Input Output): 
+- GPIO디지털핀 (General Purpose Input Output):입출력핀
 - 0(0V), 1(5V) = 전구ON/OFF,모터ON/OFF,보일러ON/OFF
 - 이진수: 0,1까지 2개 | 십진수: 0 ~ 9까지 10개.
 - GPIO아날로그핀: 0~1023(1024=2 온도, 습도 입력 받을때 사용.
 - ~ PWM(Pulse Width Module)핀: 아날로그 데이터 출력처리 가능한 디지털핀
 - 아두이노 메가(Mega)보드(현업) ATMega2560칩(CRUD) GPIO핀이 다수
 - 아두이노 우노(Uno)보드(교육용) ATMega328칩  (CRUD) GPIO핀이 소수
-- 아두이노 미니(Mini)보드 = 크기가비슷한 학원실습장비로 노드MCU보드(IoT)
+- 아두이노 미니(Mini)보드 => 크기가비슷한 학원실습장비로 노드MCU보드(IoT)
 - > 책 IoT: 펌웨어개발실무(아두이노메가보드)
 - > 실습장비: 노드MCU보드(코로나상황때문에 오프라인X)
 - > 팅커캐드: 아두이노보드 시뮬레이션 구현O(코라나상황에서 온라인O)
