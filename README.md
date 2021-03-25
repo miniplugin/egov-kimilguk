@@ -72,6 +72,8 @@
 - 펌웨어: 소프트웨어 - 펌웨어(SW+HW) - 하드웨어
 - 시리얼모니터: Serial 통신(UART) 송수신되는 데이터를 확인하는 모니터(스프링의 디버그용 Console과 같음)
 - 화면권한추가를 관리자단 [권한관리]메뉴 추가 후 CRUD 작업예정.
+- 4핀리드선 푸시버튼정보(아래)
+- https://m.blog.naver.com/PostView.nhn?blogId=sisosw&logNo=221668811609&proxyReferer=https:%2F%2Fwww.google.com%2F
 
 ```
 /*
@@ -94,12 +96,12 @@ void loop() {
   // 디지털리드 함수를 이용해서 2번핀에 전압값을 읽어 들임
   btnStatus = digitalRead(2);
   //시뮬레이션에서는 아두이노와 HIGH와 LOW가 틀립니다.
-  //(주의)출력되는 반환값은 1(off), 0(on-버튼이 눌린상태).
-  //if(btnStatus>0) {
-  	Serial.print("btnStatus: ");
+  //(주의)출력되는 반환값은 1(on-버튼눌린상태), 0(off).
+  if(btnStatus>0) {
+    Serial.print("btnStatus: ");
     Serial.println(btnStatus);
     delay(1000);
-  //}
+  }
 }
 ```
 #### 20210324(수) 작업.
