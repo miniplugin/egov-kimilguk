@@ -21,4 +21,10 @@ public class AuthorRoleServiceImpl implements AuthorRoleService {
 		return authorRoleDAO.selectAuthorRole(pageVO);
 	}
 
+	@Override
+	public AuthorRoleVO viewAuthorRole(int AUTHORROLE_ID) throws Exception {
+		
+		return authorRoleDAO.viewAuthorRole(AUTHORROLE_ID);
+	}
+
 }

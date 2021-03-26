@@ -78,6 +78,14 @@ public class AdminController {
 	@Autowired
 	private EgovFileMngUtil fileUtil;
 	
+	//권한 관리 상세보기 호출GET
+	@RequestMapping(value="/admin/authorrole/view_author.do",method=RequestMethod.GET)
+	public String view_author(@RequestParam("authorrole_id") int authorrole_id, Model model,@ModelAttribute("pageVO") PageVO pageVO) throws Exception {
+		AuthorRoleVO authorRoleVO = authorRoleService.viewAuthorRole(authorrole_id);
+		model.addAttribute("result", authorRoleVO);
+		model.addAttribute("codeGroup", memberService.selectGroupMap());
+		return "admin/authorrole/view_author";
+	}
 	//권한 관리 리스트 호출 GET 
 	@RequestMapping(value="/admin/authorrole/list_author.do",method=RequestMethod.GET)
 	public String list_author(Model model,@ModelAttribute("pageVO") PageVO pageVO) throws Exception {

@@ -33,7 +33,7 @@ LIMIT #{queryStartNo},#{queryPerPageNum}
 
 <select id="viewAuthorRole" resultType="edu.human.com.authorrole.service.AuthorRoleVO">
 select * from authorrole
-where AUTHOROLE_ID = #{AUTHORROLE_ID}
+where AUTHORROLE_ID = #{AUTHORROLE_ID}
 </select>
 
 <insert id="insertAuthorRole">
