@@ -12,7 +12,7 @@ import edu.human.com.util.PageVO;
 public class AuthorRoleDAO extends EgovComAbstractMapper {
 	
 	public int countAuthorRole(PageVO pageVO) throws Exception {
-		return selectOne("authorroleMapper.countAuthorRole");
+		return selectOne("authorroleMapper.countAuthorRole", pageVO);
 	}
 	
 	public List<AuthorRoleVO> selectAuthorRole(PageVO pageVO) throws Exception {
