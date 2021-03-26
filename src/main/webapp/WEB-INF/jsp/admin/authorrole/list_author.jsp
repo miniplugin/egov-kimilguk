@@ -9,7 +9,9 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">화면권한리스트</h1>
+            <h1 class="m-0">
+                        화면권한리스트
+            </h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -18,6 +20,9 @@
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
+        <div style="font-size:12px;color:red;">
+        	주) 추가/수정/삭제시 톰캣을 리스타트해야지만, 권한이 적용 됩니다.
+        </div>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
