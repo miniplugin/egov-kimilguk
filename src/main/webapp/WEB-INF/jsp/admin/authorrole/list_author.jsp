@@ -62,27 +62,26 @@
                 <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
-                      <th>EMPLYR_ID</th><!-- 테이블 헤드 타이틀태그th -->
-                      <th>USER_NM</th>
-                      <th>EMAIL_ADRES</th>
-                      <th>EMPLYR_STTUS_CODE</th>
-                      <th>SBSCRB_DE</th>
-                      <th>GROUP_ID</th>
+                      <th>ROLE_PTTRN</th>
+                      <th>AUTHOR_CODE</th>
+                      <th>AUTHORROLE_DC</th>
+                      <th>SORT_ORDR</th>
+                      <th>USE_AT</th>
                     </tr>
                   </thead>
                   <tbody>
-                  <c:forEach items="listMember" var="memberVO">
+                  <c:forEach items="${authorRoleList}" var="vo">
                     <tr>
-                      <td><a href="<c:url value='/admin/member/view_member.do?emplyr_id=&page=&search_type=&search_keyword=' />"></a></td>
-                      <!-- 위에 a링크값은 리스트가 늘어날 수록 동적으로 user_id값이 변하게 됩니다. 개발자가 jsp처리 -->
-                      <td></td>
-                      <td></td>
-                      <td></td>
                       <td>
-                      
+                      <a href="<c:url value='/admin/authorrole/view_authorrole.do?authorrole_id=${vo.AUTHORROLE_ID}&page=${pageVO.page}&search_type${pageVO.search_type}=&search_keyword=${pageVO.search_keyword}' />">
+                      ${vo.ROLE_PTTRN}
+                      </a>
                       </td>
-                      <td><span class="badge bg-danger"></span></td>
-                      <!-- 권한표시는 부트스트랩 뺏지 클래스 사용 -->
+                      <!-- 위에 a링크값은 리스트가 늘어날 수록 동적으로 user_id값이 변하게 됩니다. 개발자가 jsp처리 -->
+                      <td>${vo.AUTHOR_CODE}</td>
+                      <td>${vo.AUTHORROLE_DC}</td>
+                      <td>${vo.SORT_ORDR}</td>
+                      <td>${vo.USE_AT}</td>
                     </tr>
                   </c:forEach>
                   </tbody>
