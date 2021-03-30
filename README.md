@@ -59,9 +59,102 @@
 <온라인=10명>
 김기명, 신숙정, 이찬홍, 이규혁, 정도영, 남가인, 이희탁, 이시은, 임송하, 정동규,
 
-#### 20210329(월) 작업예정.
-- 구름코딩테스트 문제03번 진행예정.(다이어그램보면서 코딩)
+#### 20210331(수) 작업예정.
+- 디바이스 드라이버 구현 과목 진행예정(싱커캐드 시뮬레이션이용 시리얼통신 구현)
+- 오늘은 04문제 (삽입정렬) Java,C언어로 구현: 다이어그램보고 만들예정입니다.
 - egov프로젝트 권한관리 CRUD 마무리예정.
+- 헤로쿠 클라우드 DB에 로걸 postgreSQL DB내용 임포트.
+- 헤로쿠 클라우드에 egov프로젝트 배포.
+
+#### 20210330(화) 작업.
+- 작업1:pom.xml에 포스트그레스큐엘 모듈 추가.
+- 작업2:globals.properties 파일에 설정 추가.
+- 작업3:기존 쿼리_mysql.xml을 복사하여 _postgres.xml로 추가후 아래 4가지 적용.
+- 작업4:postgreSQL로 마이그레이션 특징(아래 4가지) 
+- ---------------------------------------------
+- 페이징Query변경: SELECT * FROM TABLE_NAME LIMIT 0, 10 -> LIMIT 10 OFFSET 0;
+- 널체크Query변경: IFNULL(필드,'대체값') => COALESCE
+- 날짜출력Query변경: DATE_FORMAT => TO_CHAR(필드,'YYYY-MM-DD HH24:MI:SS')
+- %Y%m%d%H%i -> YYYY-MM-DD HH24:MI
+- 현재일시Query변경: sysdate() => current_timestamp
+- ---------------------------------------------
+- 오늘은 펌웨어구현 과제물 제출 시간이 있습니다OK.
+- 오늘은 진도는IoT과목중 디바이스 드라이버 구현 과목 진행예정(싱커캐드 아두이노 시뮬레이션이용 시리얼통신 구현)
+- 나중에 추가문제=팩토리얼 문제: 재귀함수를 사용가능한지 판단하는 문제.
+- 코딩테스트방식 : 온라인방식(구름같은서비스이용), 오프라인방식(PC로 이클립스제공, 실기시험-종이)
+
+#### postgreSQL 수동설치(아래)
+기술참조: https://bluexmas.tistory.com/170
+0. 포스트그레스큐엘 zip파일 다운받은 후 압축 풀고 이후 진행
+1. DB서버 사용자 만들기 (cmd관리자 권한으로 실행)
+- C:\pgsql>net user postgres apmsetup /add
+2. C:\pgsql\bin 폴더 Path에 추가
+- 제어판 > 시스템 > 환경변수의 Path 추가
+3. 새로 생성한 postgres로 로그인
+- C:\pgsql>runas /user:postgres cmd
+- postgres의 암호 입력:
+4. 데이터베이스 생성
+- C:\pgsql>path C:\pgsql\lib;%path%
+- C:\pgsql>bin\initdb -D data -E unicode --no-locale
+5. 윈도우 서비스에 등록 (cmd관리자 권한으로 실행)
+- C:\pgsql>cd \pgsql\bin
+- C:\pgsql\bin>pg_ctl register -N postmaster -U postgres -P apmsetup -D c:\pgsql\data
+6. 해당 서비스의 새 로그인 이름 적용
+- 제어판 > 컴퓨터관리 > 서비스 목록 중에서 postmaster 더블 클릭
+- 사용자 선택하고 암호 입력하고 [확인] 선택
+7. 서버 실행
+- C:\pgsql\bin>net start postmaster
+
+#### 20210329(월) 작업.
+- 구름코딩테스트 문제03번 진행예정.(다이어그램보면서 코딩)
+- 수업전: 헤로쿠 무료지원되는 클라우드 포스트그레스큐엘(postgreSQL) DB로 변경하겠습니다.
+- 위 DB마이그레이션은 공식사이트에 없는 내용으로 세상에 없는 내용을 전자정부에 적용하는 과정 입니다.
+- 적용전: join.jsp에서 권한추가에 따른 신규등록정보 부분 수정합니다.(아래)
+- input type="hidden" name="GROUP_ID" value="GROUP_99" -- > GROUP_00000000000001
+- 메인페이지 디자인에서 이미지 비율이 깨지는 문제 CSS로 해결
+- 아래 home.jsp 상단 css 미디어쿼리 사용 변경
+
+```
+<style>
+@media all and (min-width: 801px) {
+	.fix_height { 
+		height: 440px;
+	    overflow: hidden;
+	    line-height: 440px;
+	 }
+ }
+.img_topplace { opacity:0.7; }
+</style>
+<script>
+//CSS미디어쿼리로 비율 조정하기는 무시하고, 반응형으로 이미지 비율 자동 조정하기
+jQuery(function($){ //j쿼리 시작 : $(document).ready(function(){ }); == $(function(){ }); 과 동일
+	var w=$(window).width();
+	if(w>801){
+    	$(".fix_height").css({"height":(w/3)+"px","line-height":(w/3)+"px"});
+    }else{
+    	$(".fix_height").css({"height":"inherit","line-height":"inherit"});
+    }
+    $(window).resize(function(){
+        console.log("디버그: "+w)
+        var w=$(window).width();
+        if(w>801){
+        	$(".fix_height").css({"height":(w/3)+"px","line-height":(w/3)+"px"});
+        }else{
+        	$(".fix_height").css({"height":"inherit","line-height":"inherit"});
+        }
+    });
+});
+</script>
+```
+- 적용전: 해시맵으로 출력하는 쿼리 2가지를 소문자로 수정합니다.(아래)
+- select GROUP_ID, GROUP_NM -> select group_id, group_nm
+- select CODE, CODE_NM -> select code, code_nm
+- 위 쿼리를 보여주는 jsp파일을 소문자로 변경합니다.(아래)
+- sub.value.GROUP_NM -> sub.value.group_nm
+- sub.value.GROUP_ID -> sub.value.group_id
+- ${sub.value.CODE}">${sub.value.CODE_NM} -> ${sub.value.code}">${sub.value.code_nm}
+
+- 포스트스큐엘 참조: https://otrodevym.tistory.com/entry/Springmaven-Postgresql%EC%99%80-MyBatis-%EC%84%A4%EC%A0%95
 - 파스타 클라우드 체험신청예정.
 - 파스타에 클라우드용 Mysql 생성 -> phpMyAdmin 프로젝트를 이용해서 클라우드Mysql제어.
 - egov프로젝트를 로컬Mysql에서 클라우드용 Mysql 설정변경후 이클립스에서 바로 파스타로 배포예정.
