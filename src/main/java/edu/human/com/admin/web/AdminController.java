@@ -78,6 +78,12 @@ public class AdminController {
 	@Autowired
 	private EgovFileMngUtil fileUtil;
 	
+	//권한 관리 등록하기 호출GET
+	@RequestMapping(value="/admin/authorrole/insert_author.do",method=RequestMethod.GET)
+	public String insert_author() throws Exception {
+		
+		return "admin/authorrole/insert_author";
+	}
 	//권한 관리 수정하기 호출POST
 	@RequestMapping(value="/admin/authorrole/update_author.do",method=RequestMethod.POST)
 	public String update_author(RedirectAttributes rdat,AuthorRoleVO authorRoleVO,PageVO pageVO) throws Exception {
