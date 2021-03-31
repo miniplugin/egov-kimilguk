@@ -75,27 +75,36 @@
 - 오늘 디바이스 드라이버 수업은 슬라이드 1,2,4,5,6(2)번까지 작업OK.
 - 오늘은 04문제 (삽입정렬) Java,C언어로 구현: 다이어그램보고 만들예정입니다.
 - 시작: 			   5, 2, 3, 1 (n = 4)
-- 외부 for 1회전Numbers[1]=2(Key) :
-- 	내부 for 1회전 끝 :Key < Numbers[0]=5 결과 Numbers[1]=5, Numbers[0]=2
-- 	외부 1회전 최종결과: 2, 5, 3, 1
-- 외부 for 2회전Numbers[2]=3(Key) :
-- 	내부 for 1회전 : Key < Numbers[1]=5 결과 Numbers[2]=5, Numbers[1]=3
-- 	내부 for 2회전 끝: Key < Numbers[0]=1 결과 X
-- 	외부 2회전 최종결과: 2, 3, 5, 1
-- 외부 for 3회전Numbers[3]=1(Key)
--   내부 for 1회전 : Key < Numbers[2]=5 결과 Numbers[3]=5, Numbers[2]=1
--   내부 for 여기까지: 2, 3, 1, 5
--   내부 for 2회전 : Key < Numbers[1]=3 결과 Numbers[2]=3, Numbers[1]=1
--   내부 for 여기까지: 2, 1, 3, 5
--   내부 for 3회전 : Key < Numbers[0]=2 결과 Numbers[1]=2, Numbers[0]=1
--   외부 3회전 최종결과: 1, 2, 3, 5
-- 외부 for 4회전 에선 insert변수 4이기때문에 insert<n(4) 외부for문 종료
+- 외부 for 1회전Numbers[1]=2=Key :
+- 	내부 for 1회전 끝 :Numbers[0]=5 >Key 결과 Numbers[1]=5
+-   내부 for 여기까지: 5, 5, 3, 1
+-   내부 for 2회전 못가고 끝: for조건:comp>=0 break; 결과 X
+-   break; => comp=-1 => comp+1=0 => Numbers[0]=2=Key
+-  *외부 1회전 최종결과: 2[Key], 5, 3, 1
+- 외부 for 2회전Numbers[2]=3=Key :
+- 	내부 for 1회전 : Numbers[1]=5 >Key 결과 Numbers[2]=5
+-   내부 for 여기까지: 2, 5, 5, 1
+- 	내부 for 2회전 진행후 끝: Numbers[0]=1 >Key break; 결과 X
+-   break; => comp=0 => comp+1=1 => Numbers[1]=3=Key
+-  *외부 2회전 최종결과: 2, 3[Key], 5, 1
+- 외부 for 3회전Numbers[3]=1=Key
+-   내부 for 1회전 : Numbers[2]=5 >Key 결과 Numbers[3]=5(뒤로이동)
+-   내부 for 여기까지: 2, 3, 5, 5
+-   내부 for 2회전 : Numbers[1]=3 >Key 결과 Numbers[2]=3(뒤로이동)
+-   내부 for 여기까지: 2, 3, 3, 5
+-   내부 for 3회전 : Numbers[0]=2 >Key 결과 Numbers[1]=2(뒤로이동)
+-   내부 for 여기까지: 2, 2, 3, 5
+-   내부 for 4회전 못가고 끝: for조건 comp>=0 break; 결과 X
+-   break; => comp=-1 => comp+1=0 => Numbers[0]=1=Key
+-  *외부 3회전 최종결과: 1[Key], 2, 3, 5
+- 외부 for 4회전 에선 insert변수가 4이기때문에 조건:insert<n때문에 외부for문 종료
+
 - 5231(시작)
-- 2531(1회-1회)
-- 2351(2회-1회)
-- 2315(3회-1회)
-- 2135(3회-2회)
-- 1235(3회-3회)
+- Key=2 -> (1회-1회)5531 -> (외부1회종료시)2531
+- Key=3 -> (2회-1회)2551 -> (외부2회종료시)2351
+- Key=1 -> (3회-1회)2355 
+- Key=1 -> (3회-2회)2335
+- Key=1 -> (3회-3회)2235 -> (외부3회종료시)1235
 - -----------------------------------------------------
 - egov프로젝트 권한관리 CRUD 마무리예정OK.
 - 헤로쿠 클라우드 DB에 로걸 postgreSQL DB내용 임포트OK.
